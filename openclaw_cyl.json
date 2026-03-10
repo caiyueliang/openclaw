@@ -56,10 +56,38 @@
         ]
       },
       "zidongtaichu": {
-        "baseUrl": "https://cloud.zidongtaichu.com/maas/v1",
-        "apiKey": "XXXX",
+        "baseUrl": "https://ai-dx.wair.ac.cn/maas/v2/api",
+        "apiKey": "",
         "api": "openai-completions",
         "models": [
+          {
+            "id": "taichumm",
+            "name": "taichumm",
+            "reasoning": false,
+            "input": ["text", "image"],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 128000,
+            "maxTokens": 250000
+          },
+          {
+            "id": "taichu",
+            "name": "taichu",
+            "reasoning": false,
+            "input": ["text"],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 128000,
+            "maxTokens": 250000
+          },
           {
             "id": "Kimi-K2.5",
             "name": "Kimi-K2.5",
@@ -123,13 +151,15 @@
   "agents": {
     "defaults": {
       "model": {
-        "primary": "zidongtaichu/DeepSeek-V3.2"
+        "primary": "zidongtaichu/MiniMax M2.5"
       },
       "models": {
         "qwen-portal/coder-model": {
           "alias": "qwen"
         },
         "qwen-portal/vision-model": {},
+        "zidongtaichu/taichumm": {},
+        "zidongtaichu/taichu": {},
         "zidongtaichu/Kimi-K2.5": {},
         "zidongtaichu/MiniMax M2.5": {},
         "zidongtaichu/DeepSeek-V3.2": {},
