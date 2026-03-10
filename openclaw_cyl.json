@@ -1,0 +1,211 @@
+{
+  "meta": {
+    "lastTouchedVersion": "2026.3.8",
+    "lastTouchedAt": "2026-03-10T02:28:19.571Z"
+  },
+  "wizard": {
+    "lastRunAt": "2026-03-09T08:14:00.299Z",
+    "lastRunVersion": "2026.1.30",
+    "lastRunCommand": "doctor",
+    "lastRunMode": "local"
+  },
+  "auth": {
+    "profiles": {
+      "qwen-portal:default": {
+        "provider": "qwen-portal",
+        "mode": "oauth"
+      }
+    }
+  },
+  "models": {
+    "mode": "merge",
+    "providers": {
+      "qwen-portal": {
+        "baseUrl": "https://portal.qwen.ai/v1",
+        "apiKey": "qwen-oauth",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "coder-model",
+            "name": "Qwen Coder",
+            "reasoning": false,
+            "input": ["text"],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 128000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "vision-model",
+            "name": "Qwen Vision",
+            "reasoning": false,
+            "input": ["text", "image"],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 128000,
+            "maxTokens": 8192
+          }
+        ]
+      },
+      "zidongtaichu": {
+        "baseUrl": "https://cloud.zidongtaichu.com/maas/v1",
+        "apiKey": "XXXX",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "Kimi-K2.5",
+            "name": "Kimi-K2.5",
+            "reasoning": false,
+            "input": ["text", "image"],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 128000,
+            "maxTokens": 250000
+          },
+          {
+            "id": "MiniMax M2.5",
+            "name": "MiniMax M2.5",
+            "reasoning": false,
+            "input": ["text"],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 128000,
+            "maxTokens": 30000
+          },
+          {
+            "id": "taichu_llm",
+            "name": "taichu_llm",
+            "reasoning": false,
+            "input": ["text"],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 128000,
+            "maxTokens": 30000
+          },
+          {
+            "id": "DeepSeek-V3.2",
+            "name": "DeepSeek-V3.2",
+            "reasoning": false,
+            "input": ["text"],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 128000,
+            "maxTokens": 30000
+          }
+        ]
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "zidongtaichu/DeepSeek-V3.2"
+      },
+      "models": {
+        "qwen-portal/coder-model": {
+          "alias": "qwen"
+        },
+        "qwen-portal/vision-model": {},
+        "zidongtaichu/Kimi-K2.5": {},
+        "zidongtaichu/MiniMax M2.5": {},
+        "zidongtaichu/DeepSeek-V3.2": {},
+        "zidongtaichu/taichu_llm": {}
+      },
+      "workspace": "/Users/caiyueliang/.openclaw/workspace",
+      "compaction": {
+        "mode": "safeguard"
+      },
+      "maxConcurrent": 4,
+      "subagents": {
+        "maxConcurrent": 8
+      }
+    },
+    "list": [
+      {
+        "id": "main"
+      },
+      {
+        "id": "ai-cyl",
+        "name": "AI-CYL",
+        "workspace": "/Users/caiyueliang/.openclaw/workspace-ai-cyl",
+        "agentDir": "/Users/caiyueliang/.openclaw/agents/ai-cyl/agent",
+        "model": "qwen-portal/coder-model"
+      }
+    ]
+  },
+  "tools": {
+    "profile": "coding"
+  },
+  "messages": {
+    "ackReactionScope": "group-mentions"
+  },
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto",
+    "restart": true,
+    "ownerDisplay": "raw"
+  },
+  "session": {
+    "dmScope": "per-channel-peer"
+  },
+  "channels": {
+    "dingtalk": {
+      "agentId": "4244793248",
+      "clientId": "dingkisykv87plgndbfv",
+      "clientSecret": "BcZ8IRgaDjQtlGdOfse_rdSNr4X3gBmD4vkbzlvUeS7MV0yaymzTUIkzcYXsl7LW",
+      "name": "openClaw",
+      "robotCode": "dingkisykv87plgndbfv"
+    }
+  },
+  "gateway": {
+    "port": 18789,
+    "mode": "local",
+    "bind": "loopback",
+    "auth": {
+      "mode": "token",
+      "token": "aac38ccbfa9debd6d481a3fa180b876a723d1cbe623f7b48"
+    },
+    "tailscale": {
+      "mode": "off",
+      "resetOnExit": false
+    }
+  },
+  "plugins": {
+    "entries": {
+      "qwen-portal-auth": {
+        "enabled": true
+      },
+      "feishu": {
+        "enabled": false
+      },
+      "dingtalk": {
+        "enabled": false
+      }
+    },
+    "installs": {}
+  }
+}
